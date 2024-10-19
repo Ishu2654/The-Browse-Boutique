@@ -1,0 +1,43 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+{% if error == "yes" %}
+<script>
+    alert('Welcome to E-Commerce Website');
+    window.location=('{% url 'home' %}');
+</script>
+{% endif %}
+{% if error == "not" %}
+<script>
+    alert('Username & Password are not Matching');
+</script>
+{% endif %}
+
+<style>
+.mybtnone:hover{background-color : black}
+</style>
+<div class="container">
+    <h2 style="margin-top:20px" align="center">USER LOGIN FORM</h2>
+
+<div class="container" style="border:2px solid black;width:50%;margin-top:10%">
+  <div class="row">
+     
+<div class="container-fluid" style="width:70%;margin-top:3%;margin-bottom:3%">
+<form method="post" action="">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1" style="font-weight:bold">Username</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="uname" placeholder="Enter Username">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1" style="font-weight:bold">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pwd">
+  </div>
+  <button type="submit" class="btn btn-primary mybtnone">LOGIN</button>
+  <button class="btn btn-primary mybtnone"><a href="{% url 'signup' %}" style="color:white">SIGNUP</a></button>
+</form>
+</div>
+</div>
+
+{% endblock %}

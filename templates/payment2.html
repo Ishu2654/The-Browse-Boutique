@@ -1,0 +1,149 @@
+
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+<center><h3 style="color:black;font-weight:bold;margin-top:3%;margin-bottom:3%;font-size:40px">PAYMENT DETAILS</h3></center>
+<center>
+<div style="width:55%;background-color:white" class="jumbotron">
+<div class="container" style="border:3px solid black;width:100%;margin-top:2%;margin-bottom:3% ">
+    <div class="row">
+        <!-- You can make it whatever width you want. I'm making it full width
+             on <= small devices and 4/12 page width on >= medium devices -->
+        <div class="col-xs-4 col-md-4">
+            <img style="width:150px;height:100px;margin-top:7%;margin-bottom:7%; border:1px solid black" class="img-responsive pull-right" src="{% static 'images\visa'%}">
+        </div>
+        <div class="col-xs-4 col-md-4">
+            <img style="width:150px;height:100px;margin-top:7%;margin-bottom:7%;  border:1px solid black" class="img-responsive pull-right" src="{% static 'images\card2'%}">
+        </div>
+        <div class="col-xs-4 col-md-4">
+            <img style="width:150px;height:100px;margin-top:7%;margin-bottom:7%;  border:1px solid black" class="img-responsive pull-right" src="{% static 'images\1aMastercard.jpg'%}">
+        </div>
+    </div>
+
+     <form action="{% url 'view_booking' %}" method="POST">
+         {% csrf_token %}
+
+
+ <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label  style="margin:10px;font-weight:bold" for="cardNumber">CARD NUMBER</label>
+                                    <div class="input-group">
+                                         <ion-icon style="font-size:40px;margin-right:4px;font-weight:bold" name="card"></ion-icon><input style="margin:10px
+                                            type="tel"
+                                            class="form-control"
+                                            name="cardnumber"
+											pattern="[0-9]{16}"
+											title="Only 16 digits"
+                                            placeholder="16-digit Valid Card Number"
+                                            autocomplete="cc-number"
+                                            required autofocus
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <label style="margin:10px;font-weight:bold" for="cardExpiry"><span class="hidden-xs"></span><span class="visible-xs-inline">EXPIRY</span> DATE </label>
+                                    <select required>
+		  <option value=""> Month </option>
+			<option value="01">01</option>
+			<option value="02">02</option>
+			<option value="03">03</option>
+			<option value="04">04</option>
+			<option value="05">05</option>
+			<option value="06">06</option>
+			<option value="07">07</option>
+			<option value="08">08</option>
+			<option value="09">09</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+	</select>
+  <select required>
+		  <option value="">Year</option>
+			<option value="2021">2021</option>
+			<option value="2022">2022</option>
+			<option value="2023">2023</option>
+			<option value="2024">2024</option>
+			<option value="2025">2025</option>
+			<option value="2026">2026</option>
+			<option value="2027">2027</option>
+			<option value="2028">2028</option>
+			<option value="2029">2029</option>
+			<option value="2030">2030</option>
+			<option value="2031">2031</option>
+			<option value="2032">2032</option>
+			<option value="2033">2033</option>
+			<option value="2034">2034</option>
+			<option value="2035">2035</option>
+			
+	</select>
+                                </div>
+                            </div><br>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label style="margin:10px;font-weight:bold" for="cardCVC">CVC CODE </label>
+                                    <input
+                                        type="tel"
+                                        class="form-control"
+										pattern="[0-9]{3}"
+                                        name="cvc"
+                                        placeholder="3-digit number"
+                                        autocomplete="cc-csc"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label style="margin:10px;font-weight:bold" for="cardCVC">Card Holder Name</label>
+                                    <input style="margin:10px"
+                                        type="tel"
+                                        class="form-control"
+                                        name="cvc"
+                                        placeholder="Card Holder Name"
+                                        autocomplete="cc-csc"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+                                    <label style="margin:10px;font-weight:bold" for="couponCode">Amount In Rs.</label>
+                                    <input style="margin:10px" type="text" class="form-control" value="{{total}}" name="amount" readonly/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+							<button style="color:white;font-size:20px;margin-bottom:3%" type="submit" 
+							class="btn btn-success btn-lg btn-block" name="payment" value="payment" 
+							onclick="alert('Payment Received Successfully\n View Booking Status.??')">Pay Online</button>
+                              </div>
+
+                             <div class="col-md-6">
+                                <a href="{% url 'view_booking' %}" class="btn btn-success btn-lg btn-block" style="margin-bottom:3%;font-size:20px"><h6>Cash On Delivery</h6></a>
+							</div>
+                        </div>
+                        </form>
+                    </div>
+</div></center></div>
+
+{% if error %}
+<script>
+    alert('Booking order Successfully');
+    window.location="{% url 'view_booking' %}";
+</script>
+{% endif %}
+
+{% endblock %}

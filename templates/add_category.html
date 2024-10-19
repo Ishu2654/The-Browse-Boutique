@@ -1,0 +1,32 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+{% if error %}
+<script>
+    alert('Added New Category to E-Commerce');
+</script>
+{% endif %}
+
+
+<div class="container">
+    <h2 style="margin-top:5%; margin-bottom:10%" align="center">ADD CATEGORY</h2>
+
+<div class="container" style="border:2px solid black;width:60%">
+      <div class="row">  
+    
+
+<div class="container-fluid" style="width:80%;margin-top:5%; font-weight:bold;">
+<form method="post" action="">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Category Name</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="cat" placeholder="Enter Category">
+  </div>
+
+    <button type="submit" class="btn btn-primary" style="margin-bottom:5%">SUBMIT</button>
+</form>
+</div>
+</div>
+
+{% endblock %}
